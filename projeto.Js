@@ -1,38 +1,85 @@
+/*
+Imagine que você abriu uma loja:
+1) Crie o nome de 10 produtos e armazene em uma lista;
+2) Crie outra lista para armazenar o preço de cada produto.
+3) Crie uma função para mostrar o estoque, mostrando o nome da cada produto e o seu preço.
+4) Crie uma função que adiciona um novo produto (e consequentemente um novo preço)
+5) Crie uma função que remove um produto da lista recebendo seu índice.
+6) EXECUTE AS FUNÇÕES CRIADAS NA SEGUINTE ORDEM:
+    - mostra estoque
+    - adiciona produto
+    - mostra estoque
+    - remove um elemento pelo índice
+    - mostra estoque
+*/
 
+const produtos = [
+    "Chuteira",
+    "Calção",
+    "Tênis",
+    "Boné",
+    "Meia",
+    "Moletom",
+    "Jeans",
+    "Chapéu",
+    "Cinto",
+    "Brincos"
+]
 
-let produtos = ["Chuteira", "Calção", "Tênis", "Boné", "Meia", "Moletom", "Jeans", "Chapéu", "Cinto", "Brincos"]
-let precos = [99.90, 49.90, 199.90, 29.90, 9.90, 109.90, 189.90, 39.90, 29.90, 19.90]
+const precos = [
+    99.90,
+    49.90,
+    199.90,
+    29.90,
+    9.90,
+    109.90,
+    189.90,
+    39.90,
+    29.90,
+    19.90
+]
 
-console.log("ESTOQUE:")
-for(let i = 0; i < 10; i++) {
-    console.log(produtos[i], "-R$", precos[i])
+// mostrar estoque
+function mostrarEstoque() {
+    console.log("=== ESTOQUE ===")
+
+    for(let i = 0; i < produtos.length; i++) {
+        console.log(i + " - " + produtos[i] + " - R$ " + precos[i])
+    }
+
+    console.log("-------------------")
 }
 
-const readline = require("readline")
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
+//  adicionar produto
+function adicionarProduto(nome, preco) {
+    produtos.push(nome)
+    precos.push(preco)
 
-rl.question("Escolha o seu produto: ", function(novo) {
-    rl.question("Preço: ", function(preco_novo) {
-        produtos.push(novo)
-        precos.push(Number(preco_novo))
-       
-        console.log("NOVO ESTOQUE:")
-        for(let i = 0; i < produtos.length; i++) {
-            console.log(produtos[i], "-R$", precos[i])
-        }
-       
-        rl.question("Numero do produto 0, 1, 2,...: ", function(indice) {
-            produtos.splice(indice, 1)
-            precos.splice(indice, 1)
-           
-            console.log("ESTOQUE FINAL:")
-            for(let i = 0; i < produtos.length; i++) {
-                console.log(produtos[i], "-R$", precos[i])
-            }
-            rl.close()
-        })
-    })
-})
+    console.log("Produto adicionado!")
+}
+
+//remover produto pelo índice
+function removerProduto(indice) {
+    produtos.splice(indice, 1)
+    precos.splice(indice, 1)
+
+    console.log("Produto removido!")
+}
+
+
+// FUNÇÕES para executar:
+
+// mostra estoque
+mostrarEstoque()
+
+// adiciona produto
+adicionarProduto("Camiseta", 59.90)
+
+// mostra estoque
+mostrarEstoque()
+
+// remove um elemento pelo índice
+removerProduto(2)
+
+// mostra estoque
+mostrarEstoque()
